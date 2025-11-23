@@ -9,4 +9,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Film {
+    private Long id;
+    private String name;
+    private String description;
+    private String releaseDate;
+    private Integer duration;
 }
