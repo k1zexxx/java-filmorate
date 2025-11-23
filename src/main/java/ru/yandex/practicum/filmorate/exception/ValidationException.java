@@ -12,7 +12,7 @@ public class ValidationException extends RuntimeException {
     }
 
     public static void validateFilm(Film film) {
-        DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         if (film.getName() == null || film.getName().isBlank()) {
             throw new ValidationException("Название фильма не может быть пустым");
@@ -26,7 +26,7 @@ public class ValidationException extends RuntimeException {
             throw new ValidationException("Дата релиза обязательна");
         }
 
-        if (LocalDate.parse(film.getReleaseDate(), DATEFORMATTER).isBefore(LocalDate.of(1895, 12, 28))) {
+        if (LocalDate.parse(film.getReleaseDate(), dateTimeFormatter).isBefore(LocalDate.of(1895, 12, 28))) {
             throw new ValidationException("Дата релиза не может быть раньше 28 декабря 1895 года");
         }
 
@@ -36,7 +36,7 @@ public class ValidationException extends RuntimeException {
     }
 
     public static void validateUser(User user) {
-        DateTimeFormatter DATEFORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         if (user.getEmail() == null || user.getEmail().isBlank()) {
             throw new ValidationException("Электронная почта не может быть пустой");
@@ -54,7 +54,7 @@ public class ValidationException extends RuntimeException {
             throw new ValidationException("Логин не может содержать пробелы");
         }
 
-        if (user.getBirthday() != null && LocalDate.parse(user.getBirthday(), DATEFORMATTER).isAfter(LocalDate.now())) {
+        if (user.getBirthday() != null && LocalDate.parse(user.getBirthday(), dateTimeFormatter).isAfter(LocalDate.now())) {
             throw new ValidationException("Дата рождения не может быть в будущем");
         }
 
