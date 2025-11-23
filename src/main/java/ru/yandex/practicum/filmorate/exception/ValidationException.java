@@ -7,12 +7,13 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 public class ValidationException extends RuntimeException {
+    static DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
     public ValidationException(String message) {
         super(message);
     }
 
     public static void validateFilm(Film film) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         if (film.getName() == null || film.getName().isBlank()) {
             throw new ValidationException("Название фильма не может быть пустым");
@@ -36,7 +37,6 @@ public class ValidationException extends RuntimeException {
     }
 
     public static void validateUser(User user) {
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
         if (user.getEmail() == null || user.getEmail().isBlank()) {
             throw new ValidationException("Электронная почта не может быть пустой");

@@ -1,17 +1,20 @@
 package ru.yandex.practicum.filmorate.model;
 
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.experimental.FieldDefaults;
 
 /**
  * Film.
  */
 @Getter
 @Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
 public class Film {
-    private Long id;
-    private String name;
-    private String description;
-    private String releaseDate;
-    private Integer duration;
+    Long id;
+    String name;
+    String description;
+    String releaseDate;
+    Integer duration;
 }

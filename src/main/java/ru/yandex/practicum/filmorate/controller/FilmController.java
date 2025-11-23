@@ -38,7 +38,7 @@ public class FilmController {
             return newFilm;
         }
         log.warn("Попытка обновления несуществующего фильма с id: {}", newFilm.getId());
-        throw new ValidationException("Фильм с id " + newFilm.getId() + " не найден");
+        throw new ValidationException(String.format("Фильм с id %d не найден", newFilm.getId()));
     }
 
     private long getNextId() {
