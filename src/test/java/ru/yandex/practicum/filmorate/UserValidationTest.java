@@ -169,29 +169,19 @@ class UserValidationTest {
         assertEquals("validlogin", validUser.getName());
     }
 
-    /*@Test
-    void validateUser_WithFutureBirthday_ShouldThrowValidationException() {
-        validUser.setBirthday(String.valueOf(LocalDate.now().plusDays(1).atStartOfDay()));
-
-        ValidationException exception = assertThrows(ValidationException.class,
-                () -> ValidationException.validateUser(validUser));
-
-        assertEquals("Дата рождения не может быть в будущем", exception.getMessage());
-    }*/
-
     @Test
     void validateUser_WithTodayBirthday_ShouldNotThrowException() {
-        validUser.setBirthday(String.valueOf(LocalDate.now().atStartOfDay()));
+        validUser.setBirthday(String.valueOf(LocalDate.now()));
 
         assertDoesNotThrow(() -> ValidationException.validateUser(validUser));
     }
 
     @Test
     void validateUser_WithPastBirthday_ShouldNotThrowException() {
-        validUser.setBirthday(String.valueOf(LocalDate.now().minusDays(1).atStartOfDay()));
+        validUser.setBirthday(String.valueOf(LocalDate.now().minusDays(1)));
         assertDoesNotThrow(() -> ValidationException.validateUser(validUser));
 
-        validUser.setBirthday(String.valueOf(LocalDate.of(1900, 1, 1).atStartOfDay()));
+        validUser.setBirthday("1900-01-01");
         assertDoesNotThrow(() -> ValidationException.validateUser(validUser));
     }
 
