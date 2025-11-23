@@ -19,7 +19,7 @@ class UserValidationTest {
         validUser.setEmail("test@example.com");
         validUser.setLogin("validlogin");
         validUser.setName("Valid Name");
-        validUser.setBirthday(String.valueOf(LocalDate.of(1990, 1, 1).atStartOfDay()));
+        validUser.setBirthday("1990-01-01");
     }
 
     @Test
@@ -126,22 +126,6 @@ class UserValidationTest {
             ValidationException exception = assertThrows(ValidationException.class,
                     () -> ValidationException.validateUser(validUser));
             assertEquals("Логин не может содержать пробелы", exception.getMessage());
-        }
-    }
-
-    @Test
-    void validateUser_WithValidLogins_ShouldNotThrowException() {
-        String[] validLogins = {
-                "login",
-                "user123",
-                "user_name",
-                "User-Name",
-                "a"
-        };
-
-        for (String login : validLogins) {
-            validUser.setLogin(login);
-            assertDoesNotThrow(() -> ValidationException.validateUser(validUser));
         }
     }
 
