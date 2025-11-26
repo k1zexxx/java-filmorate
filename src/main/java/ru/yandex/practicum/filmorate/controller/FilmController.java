@@ -14,6 +14,7 @@ import java.util.Collection;
 @RequiredArgsConstructor
 public class FilmController {
     private final FilmService filmService;
+    private static final String LIKE_PATH = "/films/{}/like/{}";
 
     @GetMapping
     public Collection<Film> findAll() {
@@ -41,13 +42,13 @@ public class FilmController {
 
     @PutMapping("/{id}/like/{userId}")
     public void addLike(@PathVariable Long id, @PathVariable Long userId) {
-        log.debug("PUT /films/{}/like/{} - запрос на добавление лайка фильму", id, userId);
+        log.debug("PUT " + LIKE_PATH + " - запрос на добавление лайка фильму", id, userId);
         filmService.addLike(id, userId);
     }
 
     @DeleteMapping("/{id}/like/{userId}")
     public void removeLike(@PathVariable Long id, @PathVariable Long userId) {
-        log.debug("DELETE /films/{}/like/{} - запрос на удаление лайка с фильма", id, userId);
+        log.debug("DELETE " + LIKE_PATH + " - запрос на удаление лайка с фильма", id, userId);
         filmService.removeLike(id, userId);
     }
 
